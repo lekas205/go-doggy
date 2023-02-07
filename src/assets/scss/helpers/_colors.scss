@@ -1,4 +1,13 @@
 $theme-primary: #211D52;
-$theme-gray: #F9F9F9;;
+$theme-gray: #F9F9F9;
 $theme-dark: #000000;
-$theme-dawhiterk: #ffffff;
+$theme-white: #ffffff;
+$theme-deep-gray: #555A66;
+
+:root {
+    --theme-primary: #{$theme-primary};
+    --theme-gray: #{$theme-gray};
+    --theme-dark: #{$theme-dark};
+    --theme-white: #{$theme-white};
+    --theme-deep-gray: #{$theme-deep-gray};
+}
