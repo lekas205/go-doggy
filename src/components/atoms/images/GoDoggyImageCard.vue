@@ -1,7 +1,5 @@
 <template>
-    <div class="">
-        <img :src="url" alt="">
-    </div>
+    <img :src="url" alt="">
 </template>
 
 <script lang="ts" setup>
@@ -12,7 +10,9 @@ defineProps<{
 </script>
 
 <style lang="scss" scoped>
-img{
+img {
     border-radius: 6px;
+    width: 100%;
+    margin-bottom: 24px;
 }
 </style>

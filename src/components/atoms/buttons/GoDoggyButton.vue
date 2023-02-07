@@ -8,7 +8,8 @@
  defineProps({
     variant: {
         type: String,
-        description: 'button colors (dark, light)'
+        default:'dark',
+        description: 'button colors (dark, light, transparent)'
     },
  })
 </script>
@@ -19,6 +20,7 @@ button{
     border-radius: 5px;
     font-size: 14px;
     outline: none;
+    cursor: pointer;
     &.btn-dark{
         border: 1px solid var( --theme-primary);;
         color: var(--theme-white);
@@ -28,6 +30,10 @@ button{
         color: var(--theme-deep-gray);
         background-color: rgba(204, 205, 209, 0.05);
         border: 1px solid rgba(204, 205, 209, 0.25);
+    }
+    &.btn-transparent{
+        background-color: rgba(204, 205, 209, 0);
+        border: 1px solid rgba(204, 205, 209, 0);
     }
 }
 </style>
