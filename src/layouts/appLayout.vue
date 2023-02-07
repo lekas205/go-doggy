@@ -15,7 +15,7 @@ import AppHeader from "../components/organisms/AppHeader.vue";
 .app_layout{
     .page_container{
         max-width: 1200px;
-        margin: 0 auto;
+        margin: 35px auto 0;
     }
 }
 </style>

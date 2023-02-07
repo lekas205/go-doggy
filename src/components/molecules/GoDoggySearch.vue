@@ -7,9 +7,7 @@
         </go-doggy-button>
 
         <!-- search suggestions -->
-        <go-doggy-suggestion-card :contents="contents" ></go-doggy-suggestion-card>
-
-
+        <!-- <go-doggy-suggestion-card  :contents="contents" ></go-doggy-suggestion-card> -->
     </div>
 </template>
 <script lang="ts" setup>

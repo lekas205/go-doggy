@@ -13,6 +13,7 @@ defineProps<{
 img {
     border-radius: 6px;
     width: 100%;
+    height: 100%;
     margin-bottom: 24px;
 }
 </style>

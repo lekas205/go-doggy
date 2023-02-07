@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { GoDoggyImageCard } from "../atoms";
+import  GoDoggyImageCard  from "../molecules/GoDoggyImageCard.vue";
 
 defineProps({
     images: {
@@ -17,7 +17,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .content_gallery {
-  /* line-height: 0; */
+   line-height: 1.5; 
   -webkit-column-count: 4;
   -webkit-column-gap: 10px;
   -moz-column-count: 4;
