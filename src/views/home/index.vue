@@ -10,37 +10,41 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { DogService } from "../../services";
-import { GoDoggyText, GoDoggyButton } from "../../components/atoms";
-import ContentsGallery from "@/components/organisms/ContentsGallery.vue";
-const category = ref('Samoyed')
-const dogImages = ref([])
-const filterContent = ref([
-    "Bulldog", "Pitbull", "RottWiller", "Samoyed", "Eskimo"
-])
+    import { ref, onMounted, computed } from "vue";
+    import { useStore } from 'vuex';
+    import { key } from '@/store';
+    import { GoDoggyText, GoDoggyButton } from "../../components/atoms";
+    import ContentsGallery from "@/components/organisms/ContentsGallery.vue";
 
-onMounted(async () => {
-    let { data } = await DogService.fetchRandomDogImages()
-    dogImages.value = data.message
-    console.log(data);
-})
+    const $store = useStore(key)
+    const category = ref('Samoyed')
+    const filterContent = ref([
+        "Bulldog", "Pitbull", "RottWiller", "Samoyed", "Eskimo"
+    ])
+
+    const dogImages = computed(() => {
+        return $store.state.dogImages
+    })
+
+    onMounted(async () => {
+        await $store.dispatch('fetchDogImages')
+    })
 </script>
 
 <style lang="scss" setup>
-.home_page {
-    h2 {
-        font-size: 32px;
-        margin-bottom: 20px;
-        color: var(--theme-primary);
-    }
-
-    .filter_content {
-        &>*+* {
-            margin-left: 15px;
+    .home_page {
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--theme-primary);
         }
 
-        margin-bottom: 20px;
+        .filter_content {
+            &>*+* {
+                margin-left: 15px;
+            }
+
+            margin-bottom: 20px;
+        }
     }
-}
 </style>
