@@ -9,6 +9,7 @@ input{
     outline: none;
     height: 50px;
     width: 100%;
+    border-radius: 8px;
     border: 1px solid #ECECEC;
     background-color: #F9F9F9;
     padding:0 35px;

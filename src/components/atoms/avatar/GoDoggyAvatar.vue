@@ -1,20 +1,19 @@
 <template>
-    <img :src="url" :style="avataSize" alt=""/>
+    <img :src="url" :style="avataSize" alt="" />
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
 
- const props = defineProps<{
-    url: string,
-    width: string,
-    height: string
-}>()
+const props = defineProps({
+    url:{ type:String},
+    width:{type:String },
+    height: {type: String}
+})
 
-const avataSize = computed(()=>{
-    let style;
-    if(props.width && props.height) return {height: props.height, width: props.width}
-    return {height:'30px', width: '30px' }
+const avataSize = computed(() => {
+    if (props.width && props.height) return { height: props.height, width: props.width }
+    return { height: '30px', width: '30px' }
 })
 </script>
 
