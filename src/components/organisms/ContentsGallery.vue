@@ -24,5 +24,20 @@ defineProps({
   -moz-column-gap: 10px;
   column-count: 4;
   column-gap: 24px;
+
+
+@media (max-width: 1200px) {
+    column-count: 3;
+}
+
+@media (max-width: 980px) {
+    column-count: 2;
+  }
+
+@media (max-width: 600px) {
+    column-count: 2;
+    column-gap: 15px;
+    line-height: 1.2; 
+  }
 }
 </style>

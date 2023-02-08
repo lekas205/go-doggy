@@ -8,7 +8,7 @@
             </div>
             <contents-gallery :images="dogImages"></contents-gallery>
         </section>
-        <go-doggy-skeleton v-else ></go-doggy-skeleton>
+        <go-doggy-skeleton v-else></go-doggy-skeleton>
     </div>
 </template>
 
@@ -53,14 +53,22 @@ onMounted(async () => {
         font-size: 32px;
         margin-bottom: 20px;
         color: var(--theme-primary);
+
+        @media screen and (max-width: 600px) {
+            font-size: 25px;
+        }
     }
 
     .filter_content {
-        &>*+* {
-            margin-left: 15px;
+        margin-bottom: 20px;
+        button {
+            margin-bottom: 15px;
+
+            &:not(:last-child) {
+                margin-right: 12px;
+            }
         }
 
-        margin-bottom: 20px;
     }
 }
 </style>

@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const loderHeight = ref(['250px', '150px', '400px', '300px', '150px', '400px', '300px', '500px','400px','500px',])
+const loderHeight = ref(['250px', '150px', '400px', '300px', '150px', '400px', '300px', '500px', '400px', '500px',])
 </script>
 
 <style lang="scss" scoped>
@@ -22,12 +22,12 @@ const loderHeight = ref(['250px', '150px', '400px', '300px', '150px', '400px', '
 }
 
 .go-doggy-loader {
-  -webkit-column-count: 4;
-  -webkit-column-gap: 10px;
-  -moz-column-count: 4;
-  -moz-column-gap: 10px;
-  column-count: 4;
-  column-gap: 24px;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 10px;
+    -moz-column-count: 4;
+    -moz-column-gap: 10px;
+    column-count: 4;
+    column-gap: 24px;
 
     .card.is-loading {
         .image {
@@ -37,6 +37,19 @@ const loderHeight = ref(['250px', '150px', '400px', '300px', '150px', '400px', '
             background-size: 200% 100%;
             animation: 1.5s shine linear infinite;
         }
+    }
+
+    @media (max-width: 1200px) {
+        column-count: 3;
+    }
+
+    @media (max-width: 980px) {
+        column-count: 2;
+    }
+
+    @media (max-width: 640px) {
+        column-count: 2;
+        column-gap: 15px;
     }
 }
 
