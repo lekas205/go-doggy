@@ -17,6 +17,12 @@ import AppHeader from "../components/organisms/AppHeader.vue";
         max-width: 1250px;
         padding: 0 50px;
         margin: 35px auto 0;
+
+        @media screen and (max-width: 600px) {
+            padding: 0 20px;
+        }
     }
+
+
 }
 </style>

@@ -73,5 +73,32 @@ defineProps<{
         }
     }
 
+    @media screen and (max-width: 820px) {
+        flex-direction: column;
+
+        .image_view {
+            width: 100%;
+            height: 200px;
+        }
+
+        .description {
+            width: 100%;
+            max-height: none;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .description{
+            padding: 25px;
+            h2{
+                font-size: 25px;
+            }
+            p{
+                line-height: 1.5;
+                font-size: 14px;
+            }
+        }
+    }
+
 }
 </style>

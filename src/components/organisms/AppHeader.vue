@@ -66,6 +66,10 @@ import GoDoggySearch from "../molecules/GoDoggySearch.vue";
                 display: block;
             }
         }
+
+        @media screen and (max-width: 600px) {
+            padding: 0 20px;
+        }
     }
 }
 </style>
