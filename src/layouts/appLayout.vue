@@ -14,7 +14,8 @@ import AppHeader from "../components/organisms/AppHeader.vue";
 <style lang="scss" scoped>
 .app_layout{
     .page_container{
-        max-width: 1200px;
+        max-width: 1250px;
+        padding: 0 50px;
         margin: 35px auto 0;
     }
 }
