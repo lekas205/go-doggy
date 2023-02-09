@@ -1,6 +1,8 @@
 <template>
     <div class="home_page">
         <go-doggy-skeleton v-if="loading" ></go-doggy-skeleton>
+
+        <empty-state v-else-if="!loading && dogImages.length == 0 "></empty-state>
         <section v-else>
             <go-doggy-text size="large">{{ searchedBreed }}</go-doggy-text>
             <div class="filter_content" v-if="breedSubCategories.length > 1">
@@ -19,6 +21,7 @@ import { ref, onMounted, computed } from "vue";
 import { useStore } from 'vuex';
 import { key } from '../../store';
 import { GoDoggyText, GoDoggyButton } from "../../components/atoms";
+import EmptyState from "@/components/organisms/EmptyState.vue";
 import GoDoggySkeleton from "@/components/molecules/GoDoggySkeleton.vue";
 import ContentsGallery from "@/components/organisms/ContentsGallery.vue";
 

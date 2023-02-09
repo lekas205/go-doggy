@@ -58,7 +58,7 @@ const selectBreed = function (breed: string) {
         fetchBreed()
         // check if breed has sub categories
         let breedSubCategory = breedList.value[breed]
-        $store.commit('SAVE_BREED_CATEGORIS', breedSubCategory)
+        $store.commit('SAVE_BREED_CATEGORIS', breedSubCategory || [])
         $store.commit('SAVE_SEARCHED_BREED', breed)
     } else {
         $store.dispatch('resetPageContent')

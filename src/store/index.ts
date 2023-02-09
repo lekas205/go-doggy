@@ -27,6 +27,10 @@ export const store = createStore<State>({
             state.dogImages = [...state.dogImages, ...images]
         },
 
+        UPDATE_DOG_IMAGES(state, images) {
+            state.dogImages = images
+        },
+
         SET_LOADING_STATUS(state, status) {
             state.contentLoading = status
         },
@@ -64,13 +68,13 @@ export const store = createStore<State>({
 
         async fetchByBreed({ commit }, breed) {
             let data = await DogService.fetchBYBreed(breed)
-            commit('SAVE_DOG_IMAGES', data.message)
-            return data.data
+            commit('UPDATE_DOG_IMAGES', data.message)
+            return data
         },
 
         async fetchByBreedSubCategories({ commit }, { breed, category }) {
             let data = await DogService.fetchBYBreedCategory(breed, category)
-            commit('SAVE_DOG_IMAGES', data.message)
+            commit('UPDATE_DOG_IMAGES', data.message)
             return data
         },
 
