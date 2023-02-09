@@ -16,6 +16,14 @@ export const homeRoutes = {
             meta: {
                 title: goDoggyRoutes.home.root.name
             },
+        },
+        {
+            path: goDoggyRoutes.home.details.path,
+            name: goDoggyRoutes.home.details.name,
+            component: () => import('@/views/home/details.vue'),
+            meta: {
+                title: goDoggyRoutes.home.details.name
+            },
         }
     ]
 }

@@ -9,9 +9,9 @@ import { computed, markRaw } from 'vue';
 const props = defineProps({
     size: {
         type: String,
-        default: 'default',
+        default: 'paragraph',
         validator(value: string) {
-            return ['small', 'default', 'medium', 'large'].includes(value)
+            return ['small', 'paragraph', 'medium', 'large'].includes(value)
         },
     },
 });
@@ -22,7 +22,7 @@ const tags = markRaw([
         tag: 'small'
     },
     {
-        size: 'default',
+        size: 'paragraph',
         tag: 'p'
     },
     {

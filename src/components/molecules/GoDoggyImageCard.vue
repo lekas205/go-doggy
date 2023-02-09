@@ -1,18 +1,29 @@
 <template>
-    <div class="image_card">
-        <go-doggy-image :url="url"></go-doggy-image>
+    <router-link :to="`/${breedName}?image_url=${url}`" class="image_card" @click="" >
+        <go-doggy-image :url="props.url"></go-doggy-image>
         <!-- overlay -->
         <div class="image_overlay">
-            <go-doggy-text>Pit bull</go-doggy-text>
+            <go-doggy-text>{{ breedName }} </go-doggy-text>
             <go-doggy-icon icon="heart" fill="#ffffff"></go-doggy-icon>
         </div>
-    </div>
+    </router-link>
 </template>
 <script lang="ts" setup>
+import { computed } from "vue";
+import { useBreedName } from '../../composables/getBreedName'
 import { GoDoggyImage, GoDoggyIcon, GoDoggyText } from "../atoms";
-defineProps<{
-    url: string
-}>()
+const props = defineProps({
+    url: {
+        type: String,
+        default: ''
+    }
+})
+
+const breedName = useBreedName(props.url)
+
+const close = async () => {
+    
+}
 </script>
 
 <style lang="scss" scoped>
@@ -20,6 +31,7 @@ defineProps<{
     position: relative;
     cursor: pointer;
     height: 100%;
+    display: block;
 
     .image_overlay {
         top: 0;
