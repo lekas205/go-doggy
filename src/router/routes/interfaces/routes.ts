@@ -6,6 +6,7 @@ interface GoDoggyRoutesStructure {
 
 export interface GoDoggyRouteLayout {
     home: {
-        root: GoDoggyRoutesStructure
+        root: GoDoggyRoutesStructure,
+        details: GoDoggyRoutesStructure
     },
 }

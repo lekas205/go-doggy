@@ -5,6 +5,10 @@ export const goDoggyRoutes: GoDoggyRouteLayout = {
         root: {
             path: '/',
             name: 'Home'
+        },
+        details: {
+            path: '/:id',
+            name: 'Details'
         }
     }
 }

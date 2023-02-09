@@ -1,0 +1,12 @@
+@import '../fonts/stylesheet.css';
+@import '../scss/helpers/variables';
+@import '../scss/helpers/colors';
+
+*,
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $theme-font ;
+}
