@@ -1,18 +1,20 @@
 <template>
     <div class="home_page">
-        <go-doggy-skeleton v-if="loading" ></go-doggy-skeleton>
-
-        <empty-state v-else-if="!loading && dogImages.length == 0 "></empty-state>
-        <section v-else>
+        <!-- search title and sub-categories -->
+        <section>
             <go-doggy-text size="large">{{ searchedBreed }}</go-doggy-text>
             <div class="filter_content" v-if="breedSubCategories.length > 1">
                 <go-doggy-button v-for="item in breedSubCategories" :variant="cactiveCtegory == item ? 'dark' : 'light'"
                     @click="fetchByCategory(item)">{{ item }}
                 </go-doggy-button>
             </div>
-            <contents-gallery :images="dogImages"></contents-gallery>
         </section>
-       
+
+
+        <go-doggy-skeleton v-if="loading"></go-doggy-skeleton>
+        <empty-state v-else-if="!loading && dogImages.length == 0"></empty-state>
+        <contents-gallery :images="dogImages" v-else></contents-gallery>
+
     </div>
 </template>
 
