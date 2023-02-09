@@ -1,6 +1,6 @@
 <template>
-    <div class="content_gallery">
-        <go-doggy-image-card v-for="img in images" :url="img" ></go-doggy-image-card>
+    <div class="content_gallery"> 
+        <go-doggy-image-card v-for="img in  images" :url="img"></go-doggy-image-card>
     </div>
 </template>
 

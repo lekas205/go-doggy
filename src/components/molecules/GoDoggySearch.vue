@@ -14,7 +14,7 @@
 </template>
 <script lang="ts" setup>
 import { useStore } from 'vuex';
-import { key } from '@/store';
+import { key } from "../../store";
 import { ref, reactive, computed } from "vue";
 import { GoDoggyInput, GoDoggyIcon, GoDoggyButton } from "../atoms";
 import GoDoggySuggestionCard from "./GoDoggySuggestionCard.vue";
@@ -22,7 +22,7 @@ import GoDoggySuggestionCard from "./GoDoggySuggestionCard.vue";
 const $store = useStore(key)
 const contents = ref([])
 const form = reactive({
-    breed: ''
+    breed: '',
 })
 
 const breedList = computed(() => {
@@ -41,7 +41,7 @@ const fetchBreed = async function () {
 
 const search = async function (event: KeyboardEvent) {
     let key = event.keyCode || event.charCode
-    if (key === 13) return fetchFilteredBreeds()
+    if (key === 13) return selectBreed(form.breed)
     if (form.breed.length > 0) return getBreedList()
     contents.value = []
 
@@ -54,12 +54,16 @@ const fetchFilteredBreeds = function () {
 const selectBreed = function (breed: string) {
     form.breed = breed
     contents.value = []
+    if (form.breed.length > 0) {
+        fetchBreed()
+        // check if breed has sub categories
+        let breedSubCategory = breedList.value[breed]
+        $store.commit('SAVE_BREED_CATEGORIS', breedSubCategory)
+        $store.commit('SAVE_SEARCHED_BREED', breed)
+    } else {
+        $store.dispatch('resetPageContent')
+    }
 
-    fetchBreed()
-    // check if breed has sub categories
-    let breedSubCategory = breedList.value[breed]
-    $store.commit('SAVE_BREED_CATEGORIS', breedSubCategory)
-    $store.commit('SAVE_SEARCHED_BREED', breed)
 }
 
 const getBreedList = async function () {

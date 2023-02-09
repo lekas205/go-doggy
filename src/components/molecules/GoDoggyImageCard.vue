@@ -12,9 +12,12 @@
 import { computed } from "vue";
 import { useBreedName } from '../../composables/getBreedName'
 import { GoDoggyImage, GoDoggyIcon, GoDoggyText } from "../atoms";
-const props = defineProps<{
-    url: string
-}>()
+const props = defineProps({
+    url: {
+        type: String,
+        default: ''
+    }
+})
 
 const breedName = useBreedName(props.url)
 

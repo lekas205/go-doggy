@@ -1,6 +1,7 @@
 <template>
     <div class="home_page">
-        <section v-if="!loading">
+        <go-doggy-skeleton v-if="loading" ></go-doggy-skeleton>
+        <section v-else>
             <go-doggy-text size="large">{{ searchedBreed }}</go-doggy-text>
             <div class="filter_content" v-if="breedSubCategories.length > 1">
                 <go-doggy-button v-for="item in breedSubCategories" :variant="cactiveCtegory == item ? 'dark' : 'light'"
@@ -9,14 +10,14 @@
             </div>
             <contents-gallery :images="dogImages"></contents-gallery>
         </section>
-        <go-doggy-skeleton v-else></go-doggy-skeleton>
+       
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 import { useStore } from 'vuex';
-import { key } from '@/store';
+import { key } from '../../store';
 import { GoDoggyText, GoDoggyButton } from "../../components/atoms";
 import GoDoggySkeleton from "@/components/molecules/GoDoggySkeleton.vue";
 import ContentsGallery from "@/components/organisms/ContentsGallery.vue";
@@ -53,15 +54,26 @@ const fetchByCategory = async function (category: string) {
     }
 }
 
-onMounted(async () => {
+const fetchRandomBreed = async function () {
     try {
         $store.dispatch('toggleLoadingStatus', true)
         await $store.dispatch('fetchDogImages')
+        if (dogImages.value.length < 100) fetchRandomBreed()
         $store.dispatch('toggleLoadingStatus', false)
 
     } catch (err) {
         console.log(err);
         $store.dispatch('toggleLoadingStatus', false)
+    }
+}
+
+onMounted(() => {
+    let breedImages = localStorage.getItem('breedImages')
+    if (breedImages) {
+        $store.commit('SAVE_DOG_IMAGES', JSON.parse(breedImages))
+    } else {
+
+        fetchRandomBreed()
     }
 })
 </script>
