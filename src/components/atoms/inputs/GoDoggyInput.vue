@@ -1,8 +1,12 @@
 <template>
     <div class="">
-        <input v-bind="$attrs"  />
+        <input v-bind="$attrs"  @input="$emit('update:modelValue',($event.target as HTMLInputElement).value)" />
     </div>
 </template>
+
+<script lang="ts" setup>
+defineEmits(['update:modelValue'])
+</script>
 
 <style lang="scss" scoped>
 input{

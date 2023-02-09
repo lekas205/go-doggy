@@ -13,7 +13,7 @@ export default class {
 
     static async fetchBreedList(){
         try{
-            let data = $http.get(ENDPOINTS.breedlists+'/100')
+            let data = $http.get(ENDPOINTS.breedlists)
             return data
         }catch(err){
             console.log(err); 
@@ -22,7 +22,7 @@ export default class {
 
     static async fetchBYBreed(breed: string){
         try{
-            let data = $http.get(ENDPOINTS.byBreed(breed)+'/100')
+            let data = $http.get(ENDPOINTS.byBreed(breed))
             return data
         }catch(err){
             console.log(err); 
@@ -31,7 +31,7 @@ export default class {
 
     static async fetchBYBreedCategory(breed: string, category:string){
         try{
-            let data = $http.get(ENDPOINTS.byBreedCategory(breed, category)+'/100')
+            let data = $http.get(ENDPOINTS.byBreedCategory(breed, category))
             return data
         }catch(err){
             console.log(err); 

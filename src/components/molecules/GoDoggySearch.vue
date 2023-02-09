@@ -1,21 +1,77 @@
 <template>
     <div class="search_feild">
         <go-doggy-icon fill="#00071A" icon="search" class="search_icon"></go-doggy-icon>
-        <go-doggy-input placeholder="Search" ></go-doggy-input>
-        <go-doggy-button variant="transparent">
+        <go-doggy-input placeholder="Search" @keyup="search($event)" v-model="form.breed"
+            :value="form.breed"></go-doggy-input>
+        <go-doggy-button variant="transparent" v-if="form.breed.length > 0" @click="form.breed = ''">
             <go-doggy-icon fill="#00071A" icon="close"></go-doggy-icon>
         </go-doggy-button>
 
         <!-- search suggestions -->
-        <!-- <go-doggy-suggestion-card  :contents="contents" ></go-doggy-suggestion-card> -->
+        <go-doggy-suggestion-card :contents="contents" v-if="contents.length > 0 && form.breed.length > 0"
+            @selectBreed="selectBreed($event)"></go-doggy-suggestion-card>
     </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { useStore } from 'vuex';
+import { key } from '@/store';
+import { ref, reactive, computed } from "vue";
 import { GoDoggyInput, GoDoggyIcon, GoDoggyButton } from "../atoms";
 import GoDoggySuggestionCard from "./GoDoggySuggestionCard.vue";
 
-const contents = ref(['Bull Gog', 'jaman shepard', 'rott'])
+const $store = useStore(key)
+const contents = ref([])
+const form = reactive({
+    breed: ''
+})
+
+const breedList = computed(() => {
+    return $store.state.breedList
+})
+const fetchBreed = async function () {
+    try {
+        $store.dispatch('toggleLoadingStatus', true)
+        await $store.dispatch('fetchByBreed', form.breed)
+        $store.dispatch('toggleLoadingStatus', false)
+    } catch (err) {
+        console.log(err);
+        $store.dispatch('toggleLoadingStatus', false)
+    }
+}
+
+const search = async function (event: KeyboardEvent) {
+    let key = event.keyCode || event.charCode
+    if (key === 13) return fetchFilteredBreeds()
+    if (form.breed.length > 0) return getBreedList()
+    contents.value = []
+
+}
+
+const fetchFilteredBreeds = function () {
+    console.log(breedList);
+}
+
+const selectBreed = function (breed: string) {
+    form.breed = breed
+    contents.value = []
+
+    fetchBreed()
+    // check if breed has sub categories
+    let breedSubCategory = breedList.value[breed]
+    $store.commit('SAVE_BREED_CATEGORIS', breedSubCategory)
+    $store.commit('SAVE_SEARCHED_BREED', breed)
+}
+
+const getBreedList = async function () {
+    if (breedList.value == null) {
+        await $store.dispatch('fetchBreedList')
+    }
+    let breeds = Object.keys(breedList.value)
+    contents.value = breeds.filter(elm => {
+        return elm.includes(form.breed.toLowerCase())
+    })
+}
+
 </script> 
 
 <style lang="scss" scoped>

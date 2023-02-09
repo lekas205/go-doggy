@@ -1,6 +1,6 @@
 <template>
     <div class="search_suggestions">
-        <go-doggy-text v-for="item in contents">
+        <go-doggy-text v-for="item in contents" @click="$emit('selectBreed', item)" >
             {{ item }}
         </go-doggy-text>
     </div>
@@ -10,6 +10,7 @@ import { GoDoggyText } from "../atoms";
 defineProps<{
     contents: String[]
 }>()
+defineEmits(['selectBreed'])
 </script>
 
 <style lang="scss" scoped>
@@ -18,7 +19,7 @@ defineProps<{
     position: absolute;
     border-radius: 0 0 16px 16px;
     padding: 20px;
-    max-height: 300px;
+    max-height: 70vh;
     overflow: auto;
     background-color: var(--theme-white);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;   
